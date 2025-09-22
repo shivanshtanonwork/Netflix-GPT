@@ -2,6 +2,8 @@
 
 - npm create vite@latest
 - Configured TailwindCSS 
+- Header
+- Login Form
 
 
 # Features
