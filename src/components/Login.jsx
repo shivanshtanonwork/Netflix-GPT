@@ -10,6 +10,9 @@ const Login = () => {
           alt="bg-image"
         />
       </div>
+      <form>
+        <input type="text" placeholder="email" />
+      </form>
     </div>
   );
 };
