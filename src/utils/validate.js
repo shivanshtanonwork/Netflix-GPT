@@ -1,5 +1,5 @@
-export const checkValidData = (name, email, password) => {
-  const isNameValid = /^[A-Za-z ]{3,}$/.test(name);
+export const checkValidData = (name, email, password, isSignInForm) => {
+  const isNameValid = !isSignInForm ? /^[A-Za-z ]{3,}$/.test(name) : true;
   const isEmailValid = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(
     email
   );

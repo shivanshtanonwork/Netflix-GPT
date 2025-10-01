@@ -19,11 +19,13 @@ const Login = () => {
     // console.log(email.current.value);
     // console.log(password.current.value);
     const message = checkValidData(
-      name.current.value,
+      name.current?.value || "",
       email.current.value,
-      password.current.value
+      password.current.value,
+      isSignInForm
     );
     setErrorMessage(message);
+    // console.log(message);
 
     // sign in / sign up
   };
@@ -66,6 +68,7 @@ const Login = () => {
         />
         <p className="text-red-600 font-bold text-lg py-2">{errorMessage}</p>
         <button
+          type="button"
           className="p-4 my-6 bg-red-600 hover:bg-red-700 w-full rounded-md font-semibold"
           onClick={handleButtonClick}
         >
