@@ -1,10 +1,24 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Header from "./Header";
+import { checkValidData } from "../utils/validate";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
+  const [errorMessage, setErrorMessage] = useState(null);
+
+  const email = useRef(null);
+  const password = useRef(null);
+
   const toggleSignInForm = () => {
     setIsSignInForm(!isSignInForm);
+  };
+
+  const handleButtonClick = () => {
+    // Validate the form data
+    // console.log(email.current.value);
+    // console.log(password.current.value);
+    const message = checkValidData(email.current.value, password.current.value);
+    setErrorMessage(message);
   };
   return (
     <div>
@@ -15,7 +29,10 @@ const Login = () => {
           alt="bg-image"
         />
       </div>
-      <form className="w-4/12 absolute p-12 bg-black/80 text-white my-36 mx-auto left-0 right-0 rounded-md">
+      <form
+        onSubmit={(e) => e.preventDefault()}
+        className="w-4/12 absolute p-12 bg-black/80 text-white my-36 mx-auto left-0 right-0 rounded-md"
+      >
         <h1 className="font-bold text-3xl py-4">
           {isSignInForm ? "Sign In" : "Sign Up"}
         </h1>
@@ -27,18 +44,23 @@ const Login = () => {
           />
         )}
         <input
+          ref={email}
           type="text"
           placeholder="Email Address"
           className="p-4 my-3 w-full bg-zinc-800 rounded-md focus:outline-none focus:ring-1 focus:ring-white"
         />
 
         <input
+          ref={password}
           type="password"
           placeholder="Password"
           className="p-4 my-3 w-full bg-zinc-800 rounded-md focus:outline-none focus:ring-1 focus:ring-white"
         />
-
-        <button className="p-4 my-6 bg-red-600 hover:bg-red-700 w-full rounded-md font-semibold">
+        <p className="text-red-600 font-bold text-lg py-2">{errorMessage}</p>
+        <button
+          className="p-4 my-6 bg-red-600 hover:bg-red-700 w-full rounded-md font-semibold"
+          onClick={handleButtonClick}
+        >
           {isSignInForm ? "Sign In" : "Sign Up"}
         </button>
         <p

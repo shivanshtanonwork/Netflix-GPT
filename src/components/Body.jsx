@@ -6,11 +6,11 @@ const Body = () => {
   const appRouter = createBrowserRouter([
     {
       path: "/",
-      element: <Login />,
+      Component: Login,
     },
     {
       path: "/browse",
-      element: <Browse />,
+      Component: Browse,
     },
   ]);
 
