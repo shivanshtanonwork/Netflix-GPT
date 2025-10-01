@@ -1,4 +1,5 @@
-export const checkValidData = (email, password) => {
+export const checkValidData = (name, email, password) => {
+  const isNameValid = /^[A-Za-z ]{3,}$/.test(name);
   const isEmailValid = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(
     email
   );
@@ -7,6 +8,7 @@ export const checkValidData = (email, password) => {
       password
     );
 
+  if (!isNameValid) return "Name is not valid (min 3 letters, alphabets only)";
   if (!isEmailValid) return "Email ID is not valid";
   if (!isPasswordValid) return "Password is not valid";
 
